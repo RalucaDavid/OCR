@@ -17,13 +17,16 @@ public class TesseractOcrService {
     private Tesseract tesseract;
 
     public String recognizeText(InputStream inputStream) throws IOException {
-        BufferedImage image = ImageIO.read(inputStream);
-        try {
+        try (inputStream) {
+            BufferedImage image = ImageIO.read(inputStream);
+            if (image == null) {
+                return "Error: Invalid Image";
+            }
+
             return tesseract.doOCR(image);
         } catch (TesseractException e) {
-            e.printStackTrace();
+            return "OCR Error: " + e.getMessage();
         }
-        return "failed";
     }
 
 }
