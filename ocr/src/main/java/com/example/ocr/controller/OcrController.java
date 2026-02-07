@@ -1,5 +1,6 @@
 package com.example.ocr.controller;
 
+import com.example.ocr.model.Receipt;
 import com.example.ocr.service.TesseractOcrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,7 @@ public class OcrController {
     private TesseractOcrService tesseractOCRService;
 
     @PostMapping("/ocr")
-    public String recognizeText(@RequestParam("file") MultipartFile file) throws IOException {
+    public Receipt recognizeText(@RequestParam("file") MultipartFile file) throws IOException {
         return tesseractOCRService.recognizeText(file.getInputStream());
     }
-
 }

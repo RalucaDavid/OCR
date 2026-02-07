@@ -11,6 +11,7 @@ public class TesseractConfig {
     Tesseract tesseract() {
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("src/main/resources/tessdata");
+        tesseract.setLanguage("ron+eng");
         tesseract.setVariable("user_defined_dpi", "300");
         return tesseract;
     }
